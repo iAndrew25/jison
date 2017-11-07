@@ -17,6 +17,9 @@
 'IN_LIST' 						return 'OPERATOR'
 'NOT_IN_LIST' 					return 'OPERATOR'
 
+'AND'							return 'LOGIC'
+'OR'							return 'LOGIC'
+
 'THE_LAST'						return 'KEYWORD'
 'OP2'							return 'KEYWORD'
 
@@ -37,7 +40,7 @@
 
 /* operator associations and precedence */
 
-%right 'SPACE' 'OPERATOR' 'COMMA' 'KEYWORD'
+%right 'OPERATOR' 'SPACE' 'COMMA' 'KEYWORD'
 %start program
 
 %% /* language grammar */
@@ -48,18 +51,20 @@ program
 	;
 
 e
-	: KEYWORD SPACE NUMBER SPACE STRING
-		{ $$ = {node: 'KEYWORD MM', left: $1, center: $3, right: $5}; }
-	| KEYWORD
-		{ $$ = {node: 'KEYWORD', value: yytext}; }
-	| e COMMA SPACE e
-		{ $$ = {node: 'COMMA', right: $4}}
-	| e SPACE OPERATOR SPACE e
-		{ $$ = {node: 'OPERATOR', type: $3, left: $1, right: $5}}
+	: NUMBER
+		{ $$ = {node: 'NUMBER', value: yytext}; }
 	| STRING
 		{ $$ = {node: 'STRING', value: yytext}; }
-	| NUMBER
-		{ $$ = {node: 'NUMBER', value: yytext}; }
+	| KEYWORD SPACE NUMBER SPACE STRING
+		{ $$ = {node: 'RANGE_PERIODS', left: $1, center: $3, right: $5}; }
+	| KEYWORD
+		{ $$ = {node: 'KEYWORD', value: yytext}; }
+	| e SPACE LOGIC SPACE e
+		{ $$ = {node: 'LOGIC', type: $3, left: $1, right: $5}}
+	| e COMMA SPACE e
+		{ $$ = {node: 'COMMA', left: $1, right: $4}}
+	| e SPACE OPERATOR SPACE e
+		{ $$ = {node: 'OPERATOR', type: $3, left: $1, right: $5}}
 	| STRING '[' STRING ']'
 		{ $$ = {node: 'FIELD_ENTITY', field: $1, entity: $3}; }
 	| e SPACE e
