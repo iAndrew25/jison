@@ -600,64 +600,78 @@ options: {},
 performAction: function anonymous(yy,yy_,$avoiding_name_collisions,YY_START) {
 var YYSTATE=YY_START;
 switch($avoiding_name_collisions) {
-case 0:return 12
+case 0:return 'MATHEMATICAL_OPERATOR'
 break;
-case 1:return 12
+case 1:return 'MATHEMATICAL_OPERATOR'
 break;
-case 2:return 12
+case 2:return 'MATHEMATICAL_OPERATOR'
 break;
-case 3:return 12
+case 3:return 'MATHEMATICAL_OPERATOR'
 break;
-case 4:return 12
+case 4:return 'MATHEMATICAL_OPERATOR'
 break;
-case 5:return 12
+case 5:return 'COMPARISION_OPERATOR'
 break;
-case 6:return 12
+case 6:return 'COMPARISION_OPERATOR'
 break;
-case 7:return 12
+case 7:return 'COMPARISION_OPERATOR'
 break;
-case 8:return 12
+case 8:return 'COMPARISION_OPERATOR'
 break;
-case 9:return 12
+case 9:return 'COMPARISION_OPERATOR'
 break;
-case 10:return 12
+case 10:return 'COMPARISION_OPERATOR'
 break;
-case 11:return 12
+case 11:return 'COMPARISION_OPERATOR'
 break;
-case 12:return 10
+case 12:return 'COMPARISION_OPERATOR'
 break;
-case 13:return 10
+case 13:return 'COMPARISION_OPERATOR'
 break;
-case 14:return 8
+case 14:return 'COMPARISION_OPERATOR'
 break;
-case 15:return 8
+case 15:return 'COMPARISION_OPERATOR'
 break;
-case 16:/*ignore*/
+case 16:return 'COMPARISION_OPERATOR'
 break;
-case 17:return 9
+case 17:return 'LOGICAL_OPERATOR'
 break;
-case 18:return 6
+case 18:return 'LOGICAL_OPERATOR'
 break;
-case 19:return 7
+case 19:return 'LOGICAL_OPERATOR'
 break;
-case 20:return 15
+case 20:return 'DOT'														
 break;
-case 21:return 16
+case 21:return 8
 break;
-case 22:return 13
+case 22:return 8
 break;
-case 23:return 14
+case 23:/*ignore*/
 break;
-case 24:return 17
+case 24:return 9
 break;
-case 25:return 11
+case 25:return 6
 break;
-case 26:return 5
+case 26:return 7
+break;
+case 27:return 15
+break;
+case 28:return 16
+break;
+case 29:return 13
+break;
+case 30:return 14
+break;
+case 31:return 17
+break;
+case 32:return 11
+break;
+case 33:return 5
 break;
 }
 },
-rules: [/^(?:EQUALS\b)/,/^(?:NOT_EQUALS\b)/,/^(?:GREATER_THAN\b)/,/^(?:GREATER_THAN_OR_EQUALS\b)/,/^(?:LESS_THAN\b)/,/^(?:LESS_THAN_OR_EQUALS\b)/,/^(?:LIKE\b)/,/^(?:NOT_LIKE\b)/,/^(?:BETWEEN\b)/,/^(?:NOT_BETWEEN\b)/,/^(?:IN_LIST\b)/,/^(?:NOT_IN_LIST\b)/,/^(?:AND\b)/,/^(?:OR\b)/,/^(?:THE_LAST\b)/,/^(?:OP2\b)/,/^(?:\s*\n\s*)/,/^(?:\s+)/,/^(?:[0-9]+)/,/^(?:[a-zA-Z0-9_-]+)/,/^(?:\()/,/^(?:\))/,/^(?:\[)/,/^(?:\])/,/^(?:")/,/^(?:,)/,/^(?:$)/],
-conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26],"inclusive":true}}
+rules: [/^(?:\+)/,/^(?:-)/,/^(?:\*)/,/^(?:\/)/,/^(?:\^)/,/^(?:=)/,/^(?:<>)/,/^(?:>)/,/^(?:>=)/,/^(?:<)/,/^(?:<=)/,/^(?:LIKE\b)/,/^(?:NOT LIKE\b)/,/^(?:IN\b)/,/^(?:NOT IN\b)/,/^(?:BETWEEN\b)/,/^(?:NOT BETWEEN\b)/,/^(?:AND\b)/,/^(?:OR\b)/,/^(?:NOT\b)/,/^(?:\.)/,/^(?:THE_LAST\b)/,/^(?:OP2\b)/,/^(?:\s*\n\s*)/,/^(?:\s+)/,/^(?:[0-9]+)/,/^(?:[a-zA-Z0-9_-]+)/,/^(?:\()/,/^(?:\))/,/^(?:\[)/,/^(?:\])/,/^(?:")/,/^(?:,)/,/^(?:$)/],
+conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33],"inclusive":true}}
 });
 return lexer;
 })();

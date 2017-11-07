@@ -4,21 +4,35 @@
 %lex
 %%
 
-'EQUALS' 						return 'OPERATOR'
-'NOT_EQUALS' 					return 'OPERATOR'
-'GREATER_THAN' 					return 'OPERATOR'
-'GREATER_THAN_OR_EQUALS' 		return 'OPERATOR'
-'LESS_THAN' 					return 'OPERATOR'
-'LESS_THAN_OR_EQUALS' 			return 'OPERATOR'
-'LIKE' 							return 'OPERATOR'
-'NOT_LIKE' 						return 'OPERATOR'
-'BETWEEN' 						return 'OPERATOR'
-'NOT_BETWEEN' 					return 'OPERATOR'
-'IN_LIST' 						return 'OPERATOR'
-'NOT_IN_LIST' 					return 'OPERATOR'
+'+' 							return 'MATHEMATICAL_OPERATOR'
+'-' 							return 'MATHEMATICAL_OPERATOR'
+'*' 							return 'MATHEMATICAL_OPERATOR'
+'/' 							return 'MATHEMATICAL_OPERATOR'
+'^' 							return 'MATHEMATICAL_OPERATOR'
 
-'AND'							return 'LOGIC'
-'OR'							return 'LOGIC'
+'=' 							return 'COMPARISION_OPERATOR'
+'<>' 							return 'COMPARISION_OPERATOR'
+'>' 							return 'COMPARISION_OPERATOR'
+'>=' 							return 'COMPARISION_OPERATOR'
+'<' 							return 'COMPARISION_OPERATOR'
+'<=' 							return 'COMPARISION_OPERATOR'
+'LIKE' 							return 'COMPARISION_OPERATOR'
+'NOT LIKE' 						return 'COMPARISION_OPERATOR'
+'IN' 							return 'COMPARISION_OPERATOR'
+'NOT IN' 						return 'COMPARISION_OPERATOR'
+'BETWEEN' 						return 'COMPARISION_OPERATOR'
+'NOT BETWEEN' 					return 'COMPARISION_OPERATOR'
+
+'AND'							return 'LOGICAL_OPERATOR'
+'OR'							return 'LOGICAL_OPERATOR'
+'NOT'							return 'LOGICAL_OPERATOR'
+
+'.'								return 'DOT'														
+
+
+
+
+
 
 'THE_LAST'						return 'KEYWORD'
 'OP2'							return 'KEYWORD'
@@ -26,7 +40,7 @@
 \s*\n\s*						/*ignore*/
 \s+								return 'SPACE'
 [0-9]+	 						return 'NUMBER'
-[a-zA-Z0-9_-]+					return 'STRING'
+[a-zA-Z0-9_-]+				return 'STRING'
 
 '('								return '('
 ')'								return ')'
