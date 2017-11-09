@@ -108,9 +108,9 @@
 
 \s*\n\s*							/*ignore*/
 \s+									//return 'SPACE'
-[0-9]+								return 'NUMBER'
-[_-]+								return 'SYMBOL'
-\[([a-zA-Z0-9-.\s]+)\]				return 'FIELD_TEXT'
+//[0-9]+								return 'NUMBER'
+//[_-]+								return 'SYMBOL'
+//\[([a-zA-Z0-9-.\s]+)\]				return 'FIELD_TEXT'
 [a-zA-Z0-9_-\s]+					return 'STRING'
 
 '('									return '('
@@ -125,7 +125,6 @@
 /lex
 
 /* operator associations and precedence */
-%left '[' ']'
 %right 'COMPARISION_OPERATOR' '[' ']' 'COMMA' 'KEYWORD'
 %start program
 
@@ -139,27 +138,63 @@ program
 e
 	: NUMBER
 		{ $$ = {node: 'NUMBER', value: parseInt(yytext)}; }
-	| FIELD 
+	| STRING
+		{ $$ = {node: 'STRING', content: $1}; }
+	| FIELD
 		{ $$ = {node: 'FIELD', content: $1}; }
+/*	| FIELD_TEXT 
+		{ $$ = {node: 'FIELD_TEXT', content: $1}; }*/
 	| FUNCTION
-		{ $$ = {node: 'FUNCTION', content: $1}; }
-
-/*	| KEYWORD SPACE NUMBER SPACE STRING
-		{ $$ = {node: 'RANGE_PERIODS', left: $1, center: $3, right: $5}; }*/
+	//	{ $$ = {node: 'FUNCTION', content: $1}; }
 	| KEYWORD
 		{ $$ = {node: 'KEYWORD', value: yytext}; }
-
-/*	| e SPACE COMPARISION_OPERATOR SPACE e
-		{ $$ = {node: 'COMPARISION_OPERATOR', type: $3, left: $1, right: $5}}
-	| e SPACE e
-		{ $$ = {node: 'EXPRESSIONS', left: $1, right: $3}; }
-*/
+	| e COMPARISION_OPERATOR e
+		{ $$ = {node: 'COMPARISION_OPERATOR', type: $2, left: $1, right: $3}}
+/*	| e e
+		{ $$ = {node: 'EXPRESSIONS', left: $1, right: $2}; }*/
 	| '(' e ')'
 		{ $$ = {node: 'PARENTHESIS', content: $2}; }
 	| '"' e '"'
 		{ $$ = {node: 'QUOTE', content: $2}; }
 	;
 
+IDENTIFIER
+	: STRING
+	| COMPARISION_OPERATOR
+	| LOGICAL_OPERATOR
+	| DATE_FUNCTION
+	| LOGIC_FUNCTION
+	| MATH_FUNCTION
+	| PERIOD_FUNCTION
+	| STRING_FUNCTION
+	;
+
+FUNCTION_NAME
+	: DATE_FUNCTION
+		{$$ = 'DATE_FUNCTION'}
+	| LOGIC_FUNCTION
+		{$$ = 'LOGIC_FUNCTION'}
+	| MATH_FUNCTION
+		{$$ = 'MATH_FUNCTION'}
+	| PERIOD_FUNCTION
+		{$$ = 'PERIOD_FUNCTION'}
+	| STRING_FUNCTION
+		{$$ = 'STRING_FUNCTION'}
+	;
+
+ARGS
+	: FIELD
+		{$$ = {current: $FIELD}}
+	| ARGS COMMA FIELD
+		{$$ = {previous: $ARGS, current: $FIELD}}
+	;
+
+FUNCTION
+	: FUNCTION_NAME '(' ARGS ')'
+		{$$ = {node: $1, args: $ARGS}}
+	;
+
+/*
 ALPHANUM_STRING 
 	: NUMBER STRING
 		{$$ = {node: 'ALPHANUM_STRING', field: yytext};}
@@ -167,43 +202,13 @@ ALPHANUM_STRING
 		{$$ = {node: 'ALPHANUM_STRING', field: yytext};}
 	| STRING
 		{$$ = {node: 'ALPHANUM_STRING', field: yytext};}
-	;
+	;*/
 
 FIELD 
-	: '[' ALPHANUM_STRING ']'
+	: '[' IDENTIFIER ']'
 		{ $$ = {node: 'FIELD_NO_ENTITY', field: $2}; }
-	| '[' ALPHANUM_STRING DOT ALPHANUM_STRING ']'
+	| '[' IDENTIFIER DOT IDENTIFIER ']'
 		{ $$ = {node: 'FIELD_AND_ENTITY', field: $4, entity: $2}; }
-	| '[' USERENTITY DOT ALPHANUM_STRING ']'
+	| '[' USERENTITY DOT IDENTIFIER ']'
 		{ $$ = {node: 'FIELD_AND_USERENTITY', field: $4, userentity: $2}; }
 	;
-
-FUNCTION_NAME
-	: DATE_FUNCTION
-		{$$ = {node: 'DATE_FUNCTION'}}
-	| LOGIC_FUNCTION
-		{$$ = {node: 'LOGIC_FUNCTION'}}
-	| MATH_FUNCTION
-		{$$ = {node: 'MATH_FUNCTION'}}
-	| PERIOD_FUNCTION
-		{$$ = {node: 'PERIOD_FUNCTION'}}
-	| STRING_FUNCTION
-		{$$ = {node: 'STRING_FUNCTION'}}
-	;
-
-TEST
-	: FIELD
-		{$$ = {node: 'TEST', curr: $FIELD}; console.log("FIELD => ", JSON.stringify($FIELD, null, 4))}
-	| TEST COMMA FIELD
-		{$$ = {node: 'args', prev: $TEST, curr: $FIELD}; console.log("TEST => ", JSON.stringify($TEST, null, 4))}
-	;
-
-FUNCTION
-	: FUNCTION_NAME '(' TEST ')'
-		{$$ = {node: $1, args: [$TEST]}}
-	;
-/*	: FUNCTION_NAME '(' FIELD ')'
-		{$$ = {node: $1, args: [$3]}}
-	| FUNCTION_NAME '(' FIELD COMMA SPACE FIELD ')'
-		{$$ = {node: $1, args: [$3, $6]}}
-	;*/

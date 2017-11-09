@@ -72,12 +72,12 @@
   }
 */
 var exp = (function(){
-var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,3],$V1=[1,6],$V2=[1,7],$V3=[1,8],$V4=[1,9],$V5=[1,11],$V6=[1,12],$V7=[1,13],$V8=[1,14],$V9=[1,15],$Va=[5,11,12],$Vb=[1,21],$Vc=[1,22],$Vd=[17,18],$Ve=[5,11,12,27],$Vf=[11,27];
+var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,3],$V1=[1,4],$V2=[1,7],$V3=[1,8],$V4=[1,9],$V5=[1,12],$V6=[1,13],$V7=[1,14],$V8=[1,15],$V9=[1,16],$Va=[1,10],$Vb=[1,18],$Vc=[5,11,13,14],$Vd=[1,23],$Ve=[1,24],$Vf=[1,25],$Vg=[1,26],$Vh=[1,27],$Vi=[1,28],$Vj=[1,29],$Vk=[1,30],$Vl=[26,27],$Vm=[5,11,13,14,24],$Vn=[13,24];
 var parser = {trace: function trace() { },
 yy: {},
-symbols_: {"error":2,"program":3,"e":4,"EOF":5,"NUMBER":6,"FIELD":7,"FUNCTION":8,"KEYWORD":9,"(":10,")":11,"\"":12,"ALPHANUM_STRING":13,"STRING":14,"SYMBOL":15,"[":16,"]":17,"DOT":18,"USERENTITY":19,"FUNCTION_NAME":20,"DATE_FUNCTION":21,"LOGIC_FUNCTION":22,"MATH_FUNCTION":23,"PERIOD_FUNCTION":24,"STRING_FUNCTION":25,"TEST":26,"COMMA":27,"$accept":0,"$end":1},
-terminals_: {2:"error",5:"EOF",6:"NUMBER",9:"KEYWORD",10:"(",11:")",12:"\"",14:"STRING",15:"SYMBOL",16:"[",17:"]",18:"DOT",19:"USERENTITY",21:"DATE_FUNCTION",22:"LOGIC_FUNCTION",23:"MATH_FUNCTION",24:"PERIOD_FUNCTION",25:"STRING_FUNCTION",27:"COMMA"},
-productions_: [0,[3,2],[4,1],[4,1],[4,1],[4,1],[4,3],[4,3],[13,2],[13,3],[13,1],[7,3],[7,5],[7,5],[20,1],[20,1],[20,1],[20,1],[20,1],[26,1],[26,3],[8,4]],
+symbols_: {"error":2,"program":3,"e":4,"EOF":5,"NUMBER":6,"STRING":7,"FIELD":8,"FUNCTION":9,"KEYWORD":10,"COMPARISION_OPERATOR":11,"(":12,")":13,"\"":14,"IDENTIFIER":15,"LOGICAL_OPERATOR":16,"DATE_FUNCTION":17,"LOGIC_FUNCTION":18,"MATH_FUNCTION":19,"PERIOD_FUNCTION":20,"STRING_FUNCTION":21,"FUNCTION_NAME":22,"ARGS":23,"COMMA":24,"[":25,"]":26,"DOT":27,"USERENTITY":28,"$accept":0,"$end":1},
+terminals_: {2:"error",5:"EOF",6:"NUMBER",7:"STRING",10:"KEYWORD",11:"COMPARISION_OPERATOR",12:"(",13:")",14:"\"",16:"LOGICAL_OPERATOR",17:"DATE_FUNCTION",18:"LOGIC_FUNCTION",19:"MATH_FUNCTION",20:"PERIOD_FUNCTION",21:"STRING_FUNCTION",24:"COMMA",25:"[",26:"]",27:"DOT",28:"USERENTITY"},
+productions_: [0,[3,2],[4,1],[4,1],[4,1],[4,1],[4,1],[4,3],[4,3],[4,3],[15,1],[15,1],[15,1],[15,1],[15,1],[15,1],[15,1],[15,1],[22,1],[22,1],[22,1],[22,1],[22,1],[23,1],[23,3],[9,4],[8,3],[8,5],[8,5]],
 performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
 /* this == yyval */
 
@@ -90,60 +90,60 @@ case 2:
  this.$ = {node: 'NUMBER', value: parseInt(yytext)}; 
 break;
 case 3:
- this.$ = {node: 'FIELD', content: $$[$0]}; 
+ this.$ = {node: 'STRING', content: $$[$0]}; 
 break;
 case 4:
- this.$ = {node: 'FUNCTION', content: $$[$0]}; 
-break;
-case 5:
- this.$ = {node: 'KEYWORD', value: yytext}; 
+ this.$ = {node: 'FIELD', content: $$[$0]}; 
 break;
 case 6:
- this.$ = {node: 'PARENTHESIS', content: $$[$0-1]}; 
+ this.$ = {node: 'KEYWORD', value: yytext}; 
 break;
 case 7:
+ this.$ = {node: 'COMPARISION_OPERATOR', type: $$[$0-1], left: $$[$0-2], right: $$[$0]}
+break;
+case 8:
+ this.$ = {node: 'PARENTHESIS', content: $$[$0-1]}; 
+break;
+case 9:
  this.$ = {node: 'QUOTE', content: $$[$0-1]}; 
 break;
-case 8: case 9: case 10:
-this.$ = {node: 'ALPHANUM_STRING', field: yytext};
-break;
-case 11:
- this.$ = {node: 'FIELD_NO_ENTITY', field: $$[$0-1]}; 
-break;
-case 12:
- this.$ = {node: 'FIELD_AND_ENTITY', field: $$[$0-1], entity: $$[$0-3]}; 
-break;
-case 13:
- this.$ = {node: 'FIELD_AND_USERENTITY', field: $$[$0-1], userentity: $$[$0-3]}; 
-break;
-case 14:
-this.$ = {node: 'DATE_FUNCTION'}
-break;
-case 15:
-this.$ = {node: 'LOGIC_FUNCTION'}
-break;
-case 16:
-this.$ = {node: 'MATH_FUNCTION'}
-break;
-case 17:
-this.$ = {node: 'PERIOD_FUNCTION'}
-break;
 case 18:
-this.$ = {node: 'STRING_FUNCTION'}
+this.$ = 'DATE_FUNCTION'
 break;
 case 19:
-this.$ = {node: 'TEST', curr: $$[$0]}; console.log("FIELD => ", JSON.stringify($$[$0], null, 4))
+this.$ = 'LOGIC_FUNCTION'
 break;
 case 20:
-this.$ = {node: 'args', prev: $$[$0-2], curr: $$[$0]}; console.log("TEST => ", JSON.stringify($$[$0-2], null, 4))
+this.$ = 'MATH_FUNCTION'
 break;
 case 21:
-this.$ = {node: $$[$0-3], args: [$$[$0-1]]}
+this.$ = 'PERIOD_FUNCTION'
+break;
+case 22:
+this.$ = 'STRING_FUNCTION'
+break;
+case 23:
+this.$ = {current: $$[$0]}
+break;
+case 24:
+this.$ = {previous: $$[$0-2], current: $$[$0]}
+break;
+case 25:
+this.$ = {node: $$[$0-3], args: $$[$0-1]}
+break;
+case 26:
+ this.$ = {node: 'FIELD_NO_ENTITY', field: $$[$0-1]}; 
+break;
+case 27:
+ this.$ = {node: 'FIELD_AND_ENTITY', field: $$[$0-1], entity: $$[$0-3]}; 
+break;
+case 28:
+ this.$ = {node: 'FIELD_AND_USERENTITY', field: $$[$0-1], userentity: $$[$0-3]}; 
 break;
 }
 },
-table: [{3:1,4:2,6:$V0,7:4,8:5,9:$V1,10:$V2,12:$V3,16:$V4,20:10,21:$V5,22:$V6,23:$V7,24:$V8,25:$V9},{1:[3]},{5:[1,16]},o($Va,[2,2]),o($Va,[2,3]),o($Va,[2,4]),o($Va,[2,5]),{4:17,6:$V0,7:4,8:5,9:$V1,10:$V2,12:$V3,16:$V4,20:10,21:$V5,22:$V6,23:$V7,24:$V8,25:$V9},{4:18,6:$V0,7:4,8:5,9:$V1,10:$V2,12:$V3,16:$V4,20:10,21:$V5,22:$V6,23:$V7,24:$V8,25:$V9},{6:$Vb,13:19,14:$Vc,19:[1,20]},{10:[1,23]},{10:[2,14]},{10:[2,15]},{10:[2,16]},{10:[2,17]},{10:[2,18]},{1:[2,1]},{11:[1,24]},{12:[1,25]},{17:[1,26],18:[1,27]},{18:[1,28]},{14:[1,29],15:[1,30]},o($Vd,[2,10]),{7:32,16:$V4,26:31},o($Va,[2,6]),o($Va,[2,7]),o($Ve,[2,11]),{6:$Vb,13:33,14:$Vc},{6:$Vb,13:34,14:$Vc},o($Vd,[2,8]),{14:[1,35]},{11:[1,36],27:[1,37]},o($Vf,[2,19]),{17:[1,38]},{17:[1,39]},o($Vd,[2,9]),o($Va,[2,21]),{7:40,16:$V4},o($Ve,[2,12]),o($Ve,[2,13]),o($Vf,[2,20])],
-defaultActions: {11:[2,14],12:[2,15],13:[2,16],14:[2,17],15:[2,18],16:[2,1]},
+table: [{3:1,4:2,6:$V0,7:$V1,8:5,9:6,10:$V2,12:$V3,14:$V4,17:$V5,18:$V6,19:$V7,20:$V8,21:$V9,22:11,25:$Va},{1:[3]},{5:[1,17],11:$Vb},o($Vc,[2,2]),o($Vc,[2,3]),o($Vc,[2,4]),o($Vc,[2,5]),o($Vc,[2,6]),{4:19,6:$V0,7:$V1,8:5,9:6,10:$V2,12:$V3,14:$V4,17:$V5,18:$V6,19:$V7,20:$V8,21:$V9,22:11,25:$Va},{4:20,6:$V0,7:$V1,8:5,9:6,10:$V2,12:$V3,14:$V4,17:$V5,18:$V6,19:$V7,20:$V8,21:$V9,22:11,25:$Va},{7:$Vd,11:$Ve,15:21,16:$Vf,17:$Vg,18:$Vh,19:$Vi,20:$Vj,21:$Vk,28:[1,22]},{12:[1,31]},{12:[2,18]},{12:[2,19]},{12:[2,20]},{12:[2,21]},{12:[2,22]},{1:[2,1]},{4:32,6:$V0,7:$V1,8:5,9:6,10:$V2,12:$V3,14:$V4,17:$V5,18:$V6,19:$V7,20:$V8,21:$V9,22:11,25:$Va},{11:$Vb,13:[1,33]},{11:$Vb,14:[1,34]},{26:[1,35],27:[1,36]},{27:[1,37]},o($Vl,[2,10]),o($Vl,[2,11]),o($Vl,[2,12]),o($Vl,[2,13]),o($Vl,[2,14]),o($Vl,[2,15]),o($Vl,[2,16]),o($Vl,[2,17]),{8:39,23:38,25:$Va},o([5,13,14],[2,7],{11:$Vb}),o($Vc,[2,8]),o($Vc,[2,9]),o($Vm,[2,26]),{7:$Vd,11:$Ve,15:40,16:$Vf,17:$Vg,18:$Vh,19:$Vi,20:$Vj,21:$Vk},{7:$Vd,11:$Ve,15:41,16:$Vf,17:$Vg,18:$Vh,19:$Vi,20:$Vj,21:$Vk},{13:[1,42],24:[1,43]},o($Vn,[2,23]),{26:[1,44]},{26:[1,45]},o($Vc,[2,25]),{8:46,25:$Va},o($Vm,[2,27]),o($Vm,[2,28]),o($Vn,[2,24])],
+defaultActions: {12:[2,18],13:[2,19],14:[2,20],15:[2,21],16:[2,22],17:[2,1]},
 parseError: function parseError(str, hash) {
     if (hash.recoverable) {
         this.trace(str);
@@ -628,202 +628,198 @@ case 3:return 'MATHEMATICAL_OPERATOR'
 break;
 case 4:return 'MATHEMATICAL_OPERATOR'
 break;
-case 5:return 'COMPARISION_OPERATOR'
+case 5:return 11
 break;
-case 6:return 'COMPARISION_OPERATOR'
+case 6:return 11
 break;
-case 7:return 'COMPARISION_OPERATOR'
+case 7:return 11
 break;
-case 8:return 'COMPARISION_OPERATOR'
+case 8:return 11
 break;
-case 9:return 'COMPARISION_OPERATOR'
+case 9:return 11
 break;
-case 10:return 'COMPARISION_OPERATOR'
+case 10:return 11
 break;
-case 11:return 'COMPARISION_OPERATOR'
+case 11:return 11
 break;
-case 12:return 'COMPARISION_OPERATOR'
+case 12:return 11
 break;
-case 13:return 'COMPARISION_OPERATOR'
+case 13:return 11
 break;
-case 14:return 'COMPARISION_OPERATOR'
+case 14:return 11
 break;
-case 15:return 'COMPARISION_OPERATOR'
+case 15:return 11
 break;
-case 16:return 'COMPARISION_OPERATOR'
+case 16:return 11
 break;
-case 17:return 'LOGICAL_OPERATOR'
+case 17:return 16
 break;
-case 18:return 'LOGICAL_OPERATOR'
+case 18:return 16
 break;
-case 19:return 'LOGICAL_OPERATOR'
+case 19:return 16
 break;
-case 20:return 21
+case 20:return 17
 break;
-case 21:return 21
+case 21:return 17
 break;
-case 22:return 21
+case 22:return 17
 break;
-case 23:return 21
+case 23:return 17
 break;
-case 24:return 21
+case 24:return 17
 break;
-case 25:return 21
+case 25:return 17
 break;
-case 26:return 21
+case 26:return 17
 break;
-case 27:return 21
+case 27:return 17
 break;
-case 28:return 21
+case 28:return 17
 break;
-case 29:return 21
+case 29:return 17
 break;
-case 30:return 21
+case 30:return 17
 break;
-case 31:return 21
+case 31:return 17
 break;
-case 32:return 21
+case 32:return 17
 break;
-case 33:return 21
+case 33:return 17
 break;
-case 34:return 21
+case 34:return 17
 break;
-case 35:return 21
+case 35:return 17
 break;
-case 36:return 21
+case 36:return 17
 break;
-case 37:return 21
+case 37:return 17
 break;
-case 38:return 21
+case 38:return 17
 break;
-case 39:return 21
+case 39:return 17
 break;
-case 40:return 21
+case 40:return 17
 break;
-case 41:return 21
+case 41:return 17
 break;
-case 42:return 21
+case 42:return 17
 break;
-case 43:return 21
+case 43:return 17
 break;
-case 44:return 21
+case 44:return 17
 break;
-case 45:return 21
+case 45:return 17
 break;
-case 46:return 21
+case 46:return 17
 break;
-case 47:return 22
+case 47:return 18
 break;
-case 48:return 22
+case 48:return 18
 break;
-case 49:return 22
+case 49:return 18
 break;
-case 50:return 22
+case 50:return 18
 break;
-case 51:return 23
+case 51:return 19
 break;
-case 52:return 23
+case 52:return 19
 break;
-case 53:return 23
+case 53:return 19
 break;
-case 54:return 23
+case 54:return 19
 break;
-case 55:return 23
+case 55:return 19
 break;
-case 56:return 23
+case 56:return 19
 break;
-case 57:return 23
+case 57:return 19
 break;
-case 58:return 23
+case 58:return 19
 break;
-case 59:return 23
+case 59:return 19
 break;
-case 60:return 23
+case 60:return 19
 break;
-case 61:return 23
+case 61:return 19
 break;
-case 62:return 24
+case 62:return 20
 break;
-case 63:return 24
+case 63:return 20
 break;
-case 64:return 24
+case 64:return 20
 break;
-case 65:return 24
+case 65:return 20
 break;
-case 66:return 24
+case 66:return 20
 break;
-case 67:return 24
+case 67:return 20
 break;
-case 68:return 24
+case 68:return 20
 break;
-case 69:return 24
+case 69:return 20
 break;
-case 70:return 24
+case 70:return 20
 break;
-case 71:return 24
+case 71:return 20
 break;
-case 72:return 24
+case 72:return 20
 break;
-case 73:return 24
+case 73:return 20
 break;
-case 74:return 24
+case 74:return 20
 break;
-case 75:return 24
+case 75:return 20
 break;
-case 76:return 24
+case 76:return 20
 break;
-case 77:return 24
+case 77:return 20
 break;
-case 78:return 24
+case 78:return 20
 break;
-case 79:return 24
+case 79:return 20
 break;
-case 80:return 24
+case 80:return 20
 break;
-case 81:return 24
+case 81:return 20
 break;
-case 82:return 25
+case 82:return 21
 break;
-case 83:return 25
+case 83:return 21
 break;
-case 84:return 25
+case 84:return 21
 break;
-case 85:return 9
+case 85:return 10
 break;
-case 86:return 9
+case 86:return 10
 break;
-case 87:return 19
+case 87:return 28
 break;
 case 88:/*ignore*/
 break;
 case 89://return 'SPACE'
 break;
-case 90:return 6
+case 90:return 7
 break;
-case 91:return 15
+case 91:return 12
 break;
-case 92:return 14
+case 92:return 13
 break;
-case 93:return 10
+case 93:return 25
 break;
-case 94:return 11
+case 94:return 26
 break;
-case 95:return 16
+case 95:return 14
 break;
-case 96:return 17
+case 96:return 24
 break;
-case 97:return 12
+case 97:return 27														
 break;
-case 98:return 27
-break;
-case 99:return 18														
-break;
-case 100:return 5
+case 98:return 5
 break;
 }
 },
-rules: [/^(?:\+)/,/^(?:-)/,/^(?:\*)/,/^(?:\/)/,/^(?:\^)/,/^(?:=)/,/^(?:<>)/,/^(?:>)/,/^(?:>=)/,/^(?:<)/,/^(?:<=)/,/^(?:LIKE\b)/,/^(?:NOT LIKE\b)/,/^(?:IN\b)/,/^(?:NOT IN\b)/,/^(?:BETWEEN\b)/,/^(?:NOT BETWEEN\b)/,/^(?:AND\b)/,/^(?:OR\b)/,/^(?:NOT\b)/,/^(?:AddDays\b)/,/^(?:AddMonths\b)/,/^(?:AddYears\b)/,/^(?:Date\b)/,/^(?:Datetime\b)/,/^(?:Day\b)/,/^(?:ElapsedDays\b)/,/^(?:ElapsedMonths\b)/,/^(?:ElapsedYears\b)/,/^(?:FirstDayInPeriod\b)/,/^(?:Hour\b)/,/^(?:LastDayInPeriod\b)/,/^(?:Max\b)/,/^(?:Min\b)/,/^(?:Minute\b)/,/^(?:Month\b)/,/^(?:Now\b)/,/^(?:PeriodForDate\b)/,/^(?:PeriodNumberForDate\b)/,/^(?:PeriodYearForDate\b)/,/^(?:Second\b)/,/^(?:SubtractDays\b)/,/^(?:SubtractMonths\b)/,/^(?:SubtractYears\b)/,/^(?:Today\b)/,/^(?:Weekday\b)/,/^(?:Year\b)/,/^(?:If\b)/,/^(?:IsAlpha\b)/,/^(?:IsAlphanumeric\b)/,/^(?:IsEmpty\b)/,/^(?:Abs\b)/,/^(?:Average\b)/,/^(?:Ceiling\b)/,/^(?:Floor\b)/,/^(?:Max\b)/,/^(?:Min\b)/,/^(?:Mod\b)/,/^(?:Round\b)/,/^(?:RoundDown\b)/,/^(?:RoundUp\b)/,/^(?:Sqrt\b)/,/^(?:AddPeriods\b)/,/^(?:CorrespondingPeriod\b)/,/^(?:FirstPeriodInCorrespondingPeriod\b)/,/^(?:LastPeriodInCorrespondingPeriod\b)/,/^(?:Max\b)/,/^(?:Min\b)/,/^(?:Period\b)/,/^(?:PeriodNumberForPeriod\b)/,/^(?:PeriodYearForPeriod\b)/,/^(?:SubtractPeriods\b)/,/^(?:String\b)/,/^(?:Concatenate\b)/,/^(?:Find\b)/,/^(?:Left\b)/,/^(?:Length\b)/,/^(?:Lower\b)/,/^(?:Max\b)/,/^(?:Mid\b)/,/^(?:Min\b)/,/^(?:Right\b)/,/^(?:Trim\b)/,/^(?:Upper\b)/,/^(?:Value\b)/,/^(?:THE_LAST\b)/,/^(?:OP2\b)/,/^(?:Userentity\b)/,/^(?:\s*\n\s*)/,/^(?:\s+)/,/^(?:[0-9]+)/,/^(?:[_-]+)/,/^(?:[a-zA-Z0-9_-\s]+)/,/^(?:\()/,/^(?:\))/,/^(?:\[)/,/^(?:\])/,/^(?:")/,/^(?:,)/,/^(?:\.)/,/^(?:$)/],
-conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100],"inclusive":true}}
+rules: [/^(?:\+)/,/^(?:-)/,/^(?:\*)/,/^(?:\/)/,/^(?:\^)/,/^(?:=)/,/^(?:<>)/,/^(?:>)/,/^(?:>=)/,/^(?:<)/,/^(?:<=)/,/^(?:LIKE\b)/,/^(?:NOT LIKE\b)/,/^(?:IN\b)/,/^(?:NOT IN\b)/,/^(?:BETWEEN\b)/,/^(?:NOT BETWEEN\b)/,/^(?:AND\b)/,/^(?:OR\b)/,/^(?:NOT\b)/,/^(?:AddDays\b)/,/^(?:AddMonths\b)/,/^(?:AddYears\b)/,/^(?:Date\b)/,/^(?:Datetime\b)/,/^(?:Day\b)/,/^(?:ElapsedDays\b)/,/^(?:ElapsedMonths\b)/,/^(?:ElapsedYears\b)/,/^(?:FirstDayInPeriod\b)/,/^(?:Hour\b)/,/^(?:LastDayInPeriod\b)/,/^(?:Max\b)/,/^(?:Min\b)/,/^(?:Minute\b)/,/^(?:Month\b)/,/^(?:Now\b)/,/^(?:PeriodForDate\b)/,/^(?:PeriodNumberForDate\b)/,/^(?:PeriodYearForDate\b)/,/^(?:Second\b)/,/^(?:SubtractDays\b)/,/^(?:SubtractMonths\b)/,/^(?:SubtractYears\b)/,/^(?:Today\b)/,/^(?:Weekday\b)/,/^(?:Year\b)/,/^(?:If\b)/,/^(?:IsAlpha\b)/,/^(?:IsAlphanumeric\b)/,/^(?:IsEmpty\b)/,/^(?:Abs\b)/,/^(?:Average\b)/,/^(?:Ceiling\b)/,/^(?:Floor\b)/,/^(?:Max\b)/,/^(?:Min\b)/,/^(?:Mod\b)/,/^(?:Round\b)/,/^(?:RoundDown\b)/,/^(?:RoundUp\b)/,/^(?:Sqrt\b)/,/^(?:AddPeriods\b)/,/^(?:CorrespondingPeriod\b)/,/^(?:FirstPeriodInCorrespondingPeriod\b)/,/^(?:LastPeriodInCorrespondingPeriod\b)/,/^(?:Max\b)/,/^(?:Min\b)/,/^(?:Period\b)/,/^(?:PeriodNumberForPeriod\b)/,/^(?:PeriodYearForPeriod\b)/,/^(?:SubtractPeriods\b)/,/^(?:String\b)/,/^(?:Concatenate\b)/,/^(?:Find\b)/,/^(?:Left\b)/,/^(?:Length\b)/,/^(?:Lower\b)/,/^(?:Max\b)/,/^(?:Mid\b)/,/^(?:Min\b)/,/^(?:Right\b)/,/^(?:Trim\b)/,/^(?:Upper\b)/,/^(?:Value\b)/,/^(?:THE_LAST\b)/,/^(?:OP2\b)/,/^(?:Userentity\b)/,/^(?:\s*\n\s*)/,/^(?:\s+)/,/^(?:[a-zA-Z0-9_-\s]+)/,/^(?:\()/,/^(?:\))/,/^(?:\[)/,/^(?:\])/,/^(?:")/,/^(?:,)/,/^(?:\.)/,/^(?:$)/],
+conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98],"inclusive":true}}
 });
 return lexer;
 })();
