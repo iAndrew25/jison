@@ -1,10 +1,7 @@
 /* description: Parses and executes mathematical expressions. */
-// Field 4 [maros Entity] = the last 35 4-Time Unit 1(s), including the 4-Time Unit 1 that includes the day the user logs in 
 /* lexical grammar */
 %lex
 %%
-
-//[a-zA-Z0-9_-\s]+				return 'FIELD_TEXT'
 
 '+' 								return 'MATHEMATICAL_OPERATOR'
 '-' 								return 'MATHEMATICAL_OPERATOR'
@@ -56,12 +53,12 @@
 'Today' 							return 'DATE_FUNCTION'
 'Weekday' 							return 'DATE_FUNCTION'
 'Year' 								return 'DATE_FUNCTION'
-	
+
 'If' 								return 'LOGIC_FUNCTION'
 'IsAlpha' 							return 'LOGIC_FUNCTION'
 'IsAlphanumeric' 					return 'LOGIC_FUNCTION'
 'IsEmpty' 							return 'LOGIC_FUNCTION'
-	
+
 'Abs' 								return 'MATH_FUNCTION'
 'Average' 							return 'MATH_FUNCTION'
 'Ceiling' 							return 'MATH_FUNCTION'
@@ -99,18 +96,11 @@
 'Upper' 							return 'STRING_FUNCTION'
 'Value' 							return 'STRING_FUNCTION'
 
-
-'THE_LAST'							return 'KEYWORD'
-'OP2'								return 'KEYWORD'
-
 'Userentity'						return 'USERENTITY'
-
 
 \s*\n\s*							/*ignore*/
 \s+									//return 'SPACE'
-//[0-9]+								return 'NUMBER'
 //[_-]+								return 'SYMBOL'
-//\[([a-zA-Z0-9-.\s]+)\]				return 'FIELD_TEXT'
 [a-zA-Z0-9_-\s]+					return 'STRING'
 
 '('									return '('
@@ -119,46 +109,42 @@
 ']'									return ']'
 '"'									return '"'
 ','									return 'COMMA'
-'.'									return 'DOT'														
+'.'									return 'DOT'
 <<EOF>>								return 'EOF'
 
 /lex
 
 /* operator associations and precedence */
-%right 'COMPARISION_OPERATOR' '[' ']' 'COMMA' 'KEYWORD'
+%right '[' ']' 'COMMA' 'KEYWORD'
+%right 'MATHEMATICAL_OPERATOR'
+%right 'COMPARISION_OPERATOR'
 %start program
 
 %% /* language grammar */
 
 program
-	: e EOF
+	: expression EOF
 		{console.log(JSON.stringify($1, null, 4)); return $1; }
 	;
 
-e
-	: NUMBER
-		{ $$ = {node: 'NUMBER', value: parseInt(yytext)}; }
-	| STRING
-		{ $$ = {node: 'STRING', content: $1}; }
-	| FIELD
-		{ $$ = {node: 'FIELD', content: $1}; }
-/*	| FIELD_TEXT 
-		{ $$ = {node: 'FIELD_TEXT', content: $1}; }*/
-	| FUNCTION
-	//	{ $$ = {node: 'FUNCTION', content: $1}; }
-	| KEYWORD
-		{ $$ = {node: 'KEYWORD', value: yytext}; }
-	| e COMPARISION_OPERATOR e
-		{ $$ = {node: 'COMPARISION_OPERATOR', type: $2, left: $1, right: $3}}
-/*	| e e
-		{ $$ = {node: 'EXPRESSIONS', left: $1, right: $2}; }*/
-	| '(' e ')'
-		{ $$ = {node: 'PARENTHESIS', content: $2}; }
-	| '"' e '"'
-		{ $$ = {node: 'QUOTE', content: $2}; }
+expression
+	: MATH_EXPRESSION
+	| SEQUENCE
 	;
 
-IDENTIFIER
+MATH_EX
+	: SEQUENCE_ITEMS MATHEMATICAL_OPERATOR SEQUENCE_ITEMS
+		{$$ = {node: 'MATHEMATICAL_OPERATOR', type: $2, left: $1, right: $3}}
+	| MATH_EX MATHEMATICAL_OPERATOR SEQUENCE_ITEMS
+		{$$ = {node: 'MATHEMATICAL_OPERATOR', type: $2, left: $1, right: $3}}
+	;
+
+MATH_EXPRESSION
+	: MATH_EX COMPARISION_OPERATOR SEQUENCE_ITEMS
+		{$$ = {node: 'COMPARISION_OPERATOR', type: $2, left: $1, right: $3}}
+	;
+
+TEXT
 	: STRING
 	| COMPARISION_OPERATOR
 	| LOGICAL_OPERATOR
@@ -169,24 +155,23 @@ IDENTIFIER
 	| STRING_FUNCTION
 	;
 
-FUNCTION_NAME
-	: DATE_FUNCTION
-		{$$ = 'DATE_FUNCTION'}
-	| LOGIC_FUNCTION
-		{$$ = 'LOGIC_FUNCTION'}
-	| MATH_FUNCTION
-		{$$ = 'MATH_FUNCTION'}
-	| PERIOD_FUNCTION
-		{$$ = 'PERIOD_FUNCTION'}
-	| STRING_FUNCTION
-		{$$ = 'STRING_FUNCTION'}
+QUOTE
+	: '"' TEXT '"'
+		{$$ = {node: 'QUOTE', content: $TEXT}}
 	;
 
-ARGS
-	: FIELD
-		{$$ = {current: $FIELD}}
-	| ARGS COMMA FIELD
-		{$$ = {previous: $ARGS, current: $FIELD}}
+SEQUENCE
+	: SEQUENCE_ITEMS 
+		{$$ = [$1]}
+	| SEQUENCE COMMA SEQUENCE_ITEMS
+		{$1.push($3); $$ = $1}
+	;
+
+SEQUENCE_ITEMS
+	: QUOTE
+	| STRING
+	| FUNCTION
+	| FIELD
 	;
 
 FUNCTION
@@ -194,21 +179,31 @@ FUNCTION
 		{$$ = {node: $1, args: $ARGS}}
 	;
 
-/*
-ALPHANUM_STRING 
-	: NUMBER STRING
-		{$$ = {node: 'ALPHANUM_STRING', field: yytext};}
-	| NUMBER SYMBOL STRING
-		{$$ = {node: 'ALPHANUM_STRING', field: yytext};}
-	| STRING
-		{$$ = {node: 'ALPHANUM_STRING', field: yytext};}
-	;*/
+FUNCTION_NAME
+	: DATE_FUNCTION
+		{$$ = $DATE_FUNCTION + '-DATE_FUNCTION'}
+	| LOGIC_FUNCTION
+		{$$ = $LOGIC_FUNCTION + '-LOGIC_FUNCTION'}
+	| MATH_FUNCTION
+		{$$ = $MATH_FUNCTION + '-MATH_FUNCTION'}
+	| PERIOD_FUNCTION
+		{$$ = $PERIOD_FUNCTION + '-PERIOD_FUNCTION'}
+	| STRING_FUNCTION
+		{$$ = $STRING_FUNCTION + '-STRING_FUNCTION'}
+	;
+
+ARGS
+	: SEQUENCE_ITEMS
+		{$$ = [$1]}
+	| ARGS COMMA SEQUENCE_ITEMS
+		{$1.push($3); $$ = $1}
+	;
 
 FIELD 
-	: '[' IDENTIFIER ']'
-		{ $$ = {node: 'FIELD_NO_ENTITY', field: $2}; }
-	| '[' IDENTIFIER DOT IDENTIFIER ']'
-		{ $$ = {node: 'FIELD_AND_ENTITY', field: $4, entity: $2}; }
-	| '[' USERENTITY DOT IDENTIFIER ']'
-		{ $$ = {node: 'FIELD_AND_USERENTITY', field: $4, userentity: $2}; }
+	: '[' TEXT ']'
+		{$$ = {node: 'FIELD_NO_ENTITY', field: $2}}
+	| '[' TEXT DOT TEXT ']'
+		{$$ = {node: 'FIELD_AND_ENTITY', field: $4, entity: $2}}
+	| '[' USERENTITY DOT TEXT ']'
+		{$$ = {node: 'FIELD_AND_USERENTITY', field: $4, userentity: $2}}
 	;

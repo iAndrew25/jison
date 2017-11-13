@@ -1,1 +1,1 @@
-PeriodYearForDate([Userentity.23-03-14-18-ID], [Userentity.A-Actual], [Userentity.AG - Employee ID N], [Userentity.Active], [Userentity.AG-N Percent 6 Decimals]) = [Right]
+FirstDayInPeriod([23-01-07-03-02-06-Employee.23-01-07-03-02-06-Hire Date], 3-5, "sdfh-dsfh") + PeriodYearForDate([23-01-07-03-02-06-Employee.Login ID], [Userentity.AG-N Percent 0 Decimals]) + 3 = PeriodYearForDate([23-01-07-03-02-06-Employee.Login ID])
