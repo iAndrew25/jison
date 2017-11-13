@@ -1,6 +1,0 @@
-[23-01-07-03-04-Bonus]
-[23-01-07-03-04-City.23-01-07-03-04-City Name]
-[Login ID]
-[23-01-07-03-04-Employee.Login ID]
-
-[Userentity.23-03-14-18-ID], [Userentity.A-Actual], [Userentity.AG - Employee ID N], [Userentity.Active], [Userentity.AG-N Percent 6 Decimals]
