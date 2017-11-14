@@ -606,204 +606,34 @@ options: {},
 performAction: function anonymous(yy,yy_,$avoiding_name_collisions,YY_START) {
 var YYSTATE=YY_START;
 switch($avoiding_name_collisions) {
-case 0:return 10
+case 0:return 32
 break;
-case 1:return 10
+case 1:/*ignore*/
 break;
-case 2:return 10
+case 2://return 'SPACE'
 break;
-case 3:return 10
+case 3:return 13
 break;
-case 4:return 10
+case 4:return 26
 break;
-case 5:return 11
+case 5:return 28
 break;
-case 6:return 11
+case 6:return 29
 break;
-case 7:return 11
+case 7:return 30
 break;
-case 8:return 11
+case 8:return 21
 break;
-case 9:return 11
+case 9:return 22
 break;
-case 10:return 11
+case 10:return 31
 break;
-case 11:return 11
-break;
-case 12:return 11
-break;
-case 13:return 11
-break;
-case 14:return 11
-break;
-case 15:return 11
-break;
-case 16:return 11
-break;
-case 17:return 14
-break;
-case 18:return 14
-break;
-case 19:return 14
-break;
-case 20:return 15
-break;
-case 21:return 15
-break;
-case 22:return 15
-break;
-case 23:return 15
-break;
-case 24:return 15
-break;
-case 25:return 15
-break;
-case 26:return 15
-break;
-case 27:return 15
-break;
-case 28:return 15
-break;
-case 29:return 15
-break;
-case 30:return 15
-break;
-case 31:return 15
-break;
-case 32:return 15
-break;
-case 33:return 15
-break;
-case 34:return 15
-break;
-case 35:return 15
-break;
-case 36:return 15
-break;
-case 37:return 15
-break;
-case 38:return 15
-break;
-case 39:return 15
-break;
-case 40:return 15
-break;
-case 41:return 15
-break;
-case 42:return 15
-break;
-case 43:return 15
-break;
-case 44:return 15
-break;
-case 45:return 15
-break;
-case 46:return 15
-break;
-case 47:return 16
-break;
-case 48:return 16
-break;
-case 49:return 16
-break;
-case 50:return 16
-break;
-case 51:return 17
-break;
-case 52:return 17
-break;
-case 53:return 17
-break;
-case 54:return 17
-break;
-case 55:return 17
-break;
-case 56:return 17
-break;
-case 57:return 17
-break;
-case 58:return 17
-break;
-case 59:return 17
-break;
-case 60:return 17
-break;
-case 61:return 17
-break;
-case 62:return 18
-break;
-case 63:return 18
-break;
-case 64:return 18
-break;
-case 65:return 18
-break;
-case 66:return 18
-break;
-case 67:return 18
-break;
-case 68:return 18
-break;
-case 69:return 18
-break;
-case 70:return 18
-break;
-case 71:return 18
-break;
-case 72:return 18
-break;
-case 73:return 18
-break;
-case 74:return 18
-break;
-case 75:return 18
-break;
-case 76:return 18
-break;
-case 77:return 18
-break;
-case 78:return 18
-break;
-case 79:return 18
-break;
-case 80:return 18
-break;
-case 81:return 18
-break;
-case 82:return 19
-break;
-case 83:return 19
-break;
-case 84:return 19
-break;
-case 85:return 32
-break;
-case 86:/*ignore*/
-break;
-case 87://return 'SPACE'
-break;
-case 88:return 13
-break;
-case 89:return 26
-break;
-case 90:return 28
-break;
-case 91:return 29
-break;
-case 92:return 30
-break;
-case 93:return 21
-break;
-case 94:return 22
-break;
-case 95:return 31
-break;
-case 96:return 5
+case 11:return 5
 break;
 }
 },
-rules: [/^(?:\+)/,/^(?:-)/,/^(?:\*)/,/^(?:\/)/,/^(?:\^)/,/^(?:=)/,/^(?:<>)/,/^(?:>)/,/^(?:>=)/,/^(?:<)/,/^(?:<=)/,/^(?:LIKE\b)/,/^(?:NOT LIKE\b)/,/^(?:IN\b)/,/^(?:NOT IN\b)/,/^(?:BETWEEN\b)/,/^(?:NOT BETWEEN\b)/,/^(?:AND\b)/,/^(?:OR\b)/,/^(?:NOT\b)/,/^(?:AddDays\b)/,/^(?:AddMonths\b)/,/^(?:AddYears\b)/,/^(?:Date\b)/,/^(?:Datetime\b)/,/^(?:Day\b)/,/^(?:ElapsedDays\b)/,/^(?:ElapsedMonths\b)/,/^(?:ElapsedYears\b)/,/^(?:FirstDayInPeriod\b)/,/^(?:Hour\b)/,/^(?:LastDayInPeriod\b)/,/^(?:Max\b)/,/^(?:Min\b)/,/^(?:Minute\b)/,/^(?:Month\b)/,/^(?:Now\b)/,/^(?:PeriodForDate\b)/,/^(?:PeriodNumberForDate\b)/,/^(?:PeriodYearForDate\b)/,/^(?:Second\b)/,/^(?:SubtractDays\b)/,/^(?:SubtractMonths\b)/,/^(?:SubtractYears\b)/,/^(?:Today\b)/,/^(?:Weekday\b)/,/^(?:Year\b)/,/^(?:If\b)/,/^(?:IsAlpha\b)/,/^(?:IsAlphanumeric\b)/,/^(?:IsEmpty\b)/,/^(?:Abs\b)/,/^(?:Average\b)/,/^(?:Ceiling\b)/,/^(?:Floor\b)/,/^(?:Max\b)/,/^(?:Min\b)/,/^(?:Mod\b)/,/^(?:Round\b)/,/^(?:RoundDown\b)/,/^(?:RoundUp\b)/,/^(?:Sqrt\b)/,/^(?:AddPeriods\b)/,/^(?:CorrespondingPeriod\b)/,/^(?:FirstPeriodInCorrespondingPeriod\b)/,/^(?:LastPeriodInCorrespondingPeriod\b)/,/^(?:Max\b)/,/^(?:Min\b)/,/^(?:Period\b)/,/^(?:PeriodNumberForPeriod\b)/,/^(?:PeriodYearForPeriod\b)/,/^(?:SubtractPeriods\b)/,/^(?:String\b)/,/^(?:Concatenate\b)/,/^(?:Find\b)/,/^(?:Left\b)/,/^(?:Length\b)/,/^(?:Lower\b)/,/^(?:Max\b)/,/^(?:Mid\b)/,/^(?:Min\b)/,/^(?:Right\b)/,/^(?:Trim\b)/,/^(?:Upper\b)/,/^(?:Value\b)/,/^(?:Userentity\b)/,/^(?:\s*\n\s*)/,/^(?:\s+)/,/^(?:[a-zA-Z0-9_-\s]+)/,/^(?:\()/,/^(?:\))/,/^(?:\[)/,/^(?:\])/,/^(?:")/,/^(?:,)/,/^(?:\.)/,/^(?:$)/],
-conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96],"inclusive":true}}
+rules: [/^(?:Userentity\b)/,/^(?:\s*\n\s*)/,/^(?:\s+)/,/^(?:[a-zA-Z0-9_-\s]+)/,/^(?:\()/,/^(?:\))/,/^(?:\[)/,/^(?:\])/,/^(?:")/,/^(?:,)/,/^(?:\.)/,/^(?:$)/],
+conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11],"inclusive":true}}
 });
 return lexer;
 })();

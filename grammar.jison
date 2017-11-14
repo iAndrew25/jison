@@ -96,7 +96,7 @@
 'Upper' 							return 'STRING_FUNCTION'
 'Value' 							return 'STRING_FUNCTION'
 
-'Userentity'						return 'USERENTITY'
+'Userentity'						return 'KEYWORD'
 
 \s*\n\s*							/*ignore*/
 \s+									//return 'SPACE'
@@ -115,7 +115,7 @@
 /lex
 
 /* operator associations and precedence */
-%right '[' ']' 'COMMA' 'KEYWORD'
+%right '[' ']' 'COMMA'
 %right 'MATHEMATICAL_OPERATOR'
 %right 'COMPARISION_OPERATOR'
 %start program
@@ -204,6 +204,6 @@ FIELD
 		{$$ = {node: 'FIELD_NO_ENTITY', field: $2}}
 	| '[' TEXT DOT TEXT ']'
 		{$$ = {node: 'FIELD_AND_ENTITY', field: $4, entity: $2}}
-	| '[' USERENTITY DOT TEXT ']'
+	| '[' KEYWORD DOT TEXT ']'
 		{$$ = {node: 'FIELD_AND_USERENTITY', field: $4, userentity: $2}}
 	;
