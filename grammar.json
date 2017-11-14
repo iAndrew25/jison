@@ -1,0 +1,524 @@
+{
+  "lex": {
+    "rules": [
+      [
+        "\\+",
+        "return 'MATHEMATICAL_OPERATOR'"
+      ],
+      [
+        "-",
+        "return 'MATHEMATICAL_OPERATOR'"
+      ],
+      [
+        "\\*",
+        "return 'MATHEMATICAL_OPERATOR'"
+      ],
+      [
+        "\\/",
+        "return 'MATHEMATICAL_OPERATOR'"
+      ],
+      [
+        "\\^",
+        "return 'MATHEMATICAL_OPERATOR'"
+      ],
+      [
+        "=",
+        "return 'COMPARISION_OPERATOR'"
+      ],
+      [
+        "<>",
+        "return 'COMPARISION_OPERATOR'"
+      ],
+      [
+        ">",
+        "return 'COMPARISION_OPERATOR'"
+      ],
+      [
+        ">=",
+        "return 'COMPARISION_OPERATOR'"
+      ],
+      [
+        "<",
+        "return 'COMPARISION_OPERATOR'"
+      ],
+      [
+        "<=",
+        "return 'COMPARISION_OPERATOR'"
+      ],
+      [
+        "LIKE",
+        "return 'COMPARISION_OPERATOR'"
+      ],
+      [
+        "NOT LIKE",
+        "return 'COMPARISION_OPERATOR'"
+      ],
+      [
+        "IN",
+        "return 'COMPARISION_OPERATOR'"
+      ],
+      [
+        "NOT IN",
+        "return 'COMPARISION_OPERATOR'"
+      ],
+      [
+        "BETWEEN",
+        "return 'COMPARISION_OPERATOR'"
+      ],
+      [
+        "NOT BETWEEN",
+        "return 'COMPARISION_OPERATOR'"
+      ],
+      [
+        "AND",
+        "return 'LOGICAL_OPERATOR'"
+      ],
+      [
+        "OR",
+        "return 'LOGICAL_OPERATOR'"
+      ],
+      [
+        "NOT",
+        "return 'LOGICAL_OPERATOR'"
+      ],
+      [
+        "AddDays",
+        "return 'DATE_FUNCTION'"
+      ],
+      [
+        "AddMonths",
+        "return 'DATE_FUNCTION'"
+      ],
+      [
+        "AddYears",
+        "return 'DATE_FUNCTION'"
+      ],
+      [
+        "Date",
+        "return 'DATE_FUNCTION'"
+      ],
+      [
+        "Datetime",
+        "return 'DATE_FUNCTION'"
+      ],
+      [
+        "Day",
+        "return 'DATE_FUNCTION'"
+      ],
+      [
+        "ElapsedDays",
+        "return 'DATE_FUNCTION'"
+      ],
+      [
+        "ElapsedMonths",
+        "return 'DATE_FUNCTION'"
+      ],
+      [
+        "ElapsedYears",
+        "return 'DATE_FUNCTION'"
+      ],
+      [
+        "FirstDayInPeriod",
+        "return 'DATE_FUNCTION'"
+      ],
+      [
+        "Hour",
+        "return 'DATE_FUNCTION'"
+      ],
+      [
+        "LastDayInPeriod",
+        "return 'DATE_FUNCTION'"
+      ],
+      [
+        "Max",
+        "return 'DATE_FUNCTION'"
+      ],
+      [
+        "Min",
+        "return 'DATE_FUNCTION'"
+      ],
+      [
+        "Minute",
+        "return 'DATE_FUNCTION'"
+      ],
+      [
+        "Month",
+        "return 'DATE_FUNCTION'"
+      ],
+      [
+        "Now",
+        "return 'DATE_FUNCTION'"
+      ],
+      [
+        "PeriodForDate",
+        "return 'DATE_FUNCTION'"
+      ],
+      [
+        "PeriodNumberForDate",
+        "return 'DATE_FUNCTION'"
+      ],
+      [
+        "PeriodYearForDate",
+        "return 'DATE_FUNCTION'"
+      ],
+      [
+        "Second",
+        "return 'DATE_FUNCTION'"
+      ],
+      [
+        "SubtractDays",
+        "return 'DATE_FUNCTION'"
+      ],
+      [
+        "SubtractMonths",
+        "return 'DATE_FUNCTION'"
+      ],
+      [
+        "SubtractYears",
+        "return 'DATE_FUNCTION'"
+      ],
+      [
+        "Today",
+        "return 'DATE_FUNCTION'"
+      ],
+      [
+        "Weekday",
+        "return 'DATE_FUNCTION'"
+      ],
+      [
+        "Year",
+        "return 'DATE_FUNCTION'"
+      ],
+      [
+        "If",
+        "return 'LOGIC_FUNCTION'"
+      ],
+      [
+        "IsAlpha",
+        "return 'LOGIC_FUNCTION'"
+      ],
+      [
+        "IsAlphanumeric",
+        "return 'LOGIC_FUNCTION'"
+      ],
+      [
+        "IsEmpty",
+        "return 'LOGIC_FUNCTION'"
+      ],
+      [
+        "Abs",
+        "return 'MATH_FUNCTION'"
+      ],
+      [
+        "Average",
+        "return 'MATH_FUNCTION'"
+      ],
+      [
+        "Ceiling",
+        "return 'MATH_FUNCTION'"
+      ],
+      [
+        "Floor",
+        "return 'MATH_FUNCTION'"
+      ],
+      [
+        "Max",
+        "return 'MATH_FUNCTION'"
+      ],
+      [
+        "Min",
+        "return 'MATH_FUNCTION'"
+      ],
+      [
+        "Mod",
+        "return 'MATH_FUNCTION'"
+      ],
+      [
+        "Round",
+        "return 'MATH_FUNCTION'"
+      ],
+      [
+        "RoundDown",
+        "return 'MATH_FUNCTION'"
+      ],
+      [
+        "RoundUp",
+        "return 'MATH_FUNCTION'"
+      ],
+      [
+        "Sqrt",
+        "return 'MATH_FUNCTION'"
+      ],
+      [
+        "AddPeriods\\b",
+        "return 'PERIOD_FUNCTION'"
+      ],
+      [
+        "CorrespondingPeriod\\b",
+        "return 'PERIOD_FUNCTION'"
+      ],
+      [
+        "FirstPeriodInCorrespondingPeriod\\b",
+        "return 'PERIOD_FUNCTION'"
+      ],
+      [
+        "LastPeriodInCorrespondingPeriod\\b",
+        "return 'PERIOD_FUNCTION'"
+      ],
+      [
+        "Max\\b",
+        "return 'PERIOD_FUNCTION'"
+      ],
+      [
+        "Min\\b",
+        "return 'PERIOD_FUNCTION'"
+      ],
+      [
+        "Period\\b",
+        "return 'PERIOD_FUNCTION'"
+      ],
+      [
+        "PeriodNumberForPeriod\\b",
+        "return 'PERIOD_FUNCTION'"
+      ],
+      [
+        "PeriodYearForPeriod\\b",
+        "return 'PERIOD_FUNCTION'"
+      ],
+      [
+        "SubtractPeriods\\b",
+        "return 'PERIOD_FUNCTION'"
+      ],
+      [
+        "String\\b",
+        "return 'PERIOD_FUNCTION'"
+      ],
+      [
+        "Concatenate\\b",
+        "return 'PERIOD_FUNCTION'"
+      ],
+      [
+        "Find\\b",
+        "return 'PERIOD_FUNCTION'"
+      ],
+      [
+        "Left\\b",
+        "return 'PERIOD_FUNCTION'"
+      ],
+      [
+        "Length\\b",
+        "return 'PERIOD_FUNCTION'"
+      ],
+      [
+        "Lower\\b",
+        "return 'PERIOD_FUNCTION'"
+      ],
+      [
+        "Max\\b",
+        "return 'PERIOD_FUNCTION'"
+      ],
+      [
+        "Mid\\b",
+        "return 'PERIOD_FUNCTION'"
+      ],
+      [
+        "Min\\b",
+        "return 'PERIOD_FUNCTION'"
+      ],
+      [
+        "Right\\b",
+        "return 'PERIOD_FUNCTION'"
+      ],
+      [
+        "Trim\\b",
+        "return 'STRING_FUNCTION'"
+      ],
+      [
+        "Upper\\b",
+        "return 'STRING_FUNCTION'"
+      ],
+      [
+        "Value\\b",
+        "return 'STRING_FUNCTION'"
+      ],
+      [
+        "Userentity\\b",
+        "return 'USERENTITY'"
+      ],
+      [
+        "\\s*\\n\\s*",
+        "/*ignore*/"
+      ],
+      [
+        "\\s+",
+        "//return 'SPACE'"
+      ],
+      [
+        "[a-zA-Z0-9_-\\s]+",
+        "return 'STRING'"
+      ],
+      [
+        "\\(",
+        "return '('"
+      ],
+      [
+        "\\)",
+        "return ')'"
+      ],
+      [
+        "\\[",
+        "return '['"
+      ],
+      [
+        "\\]",
+        "return ']'"
+      ],
+      [
+        "\"",
+        "return '\"'"
+      ],
+      [
+        ",",
+        "return 'COMMA'"
+      ],
+      [
+        "\\.",
+        "return 'DOT'"
+      ],
+      [
+        "$",
+        "return 'EOF'"
+      ]
+    ]
+  },
+  "operators": [
+    [
+      "right",
+      "[",
+      "]",
+      "COMMA",
+      "KEYWORD"
+    ],
+    [
+      "right",
+      "MATHEMATICAL_OPERATOR"
+    ],
+    [
+      "right",
+      "COMPARISION_OPERATOR"
+    ]
+  ],
+  "start": "program",
+  "bnf": {
+    "program": [
+      [
+        "expression EOF",
+        "console.log(JSON.stringify($1, null, 4)); return $1; "
+      ]
+    ],
+    "expression": [
+      "MATH_EXPRESSION",
+      "SEQUENCE"
+    ],
+    "MATH_EX": [
+      [
+        "SEQUENCE_ITEMS MATHEMATICAL_OPERATOR SEQUENCE_ITEMS",
+        "$$ = {node: 'MATHEMATICAL_OPERATOR', type: $2, left: $1, right: $3}"
+      ],
+      [
+        "MATH_EX MATHEMATICAL_OPERATOR SEQUENCE_ITEMS",
+        "$$ = {node: 'MATHEMATICAL_OPERATOR', type: $2, left: $1, right: $3}"
+      ]
+    ],
+    "MATH_EXPRESSION": [
+      [
+        "MATH_EX COMPARISION_OPERATOR SEQUENCE_ITEMS",
+        "$$ = {node: 'COMPARISION_OPERATOR', type: $2, left: $1, right: $3}"
+      ]
+    ],
+    "TEXT": [
+      "STRING",
+      "COMPARISION_OPERATOR",
+      "LOGICAL_OPERATOR",
+      "DATE_FUNCTION",
+      "LOGIC_FUNCTION",
+      "MATH_FUNCTION",
+      "PERIOD_FUNCTION",
+      "STRING_FUNCTION"
+    ],
+    "QUOTE": [
+      [
+        "\" TEXT \"",
+        "$$ = {node: 'QUOTE', content: $TEXT}"
+      ]
+    ],
+    "SEQUENCE": [
+      [
+        "SEQUENCE_ITEMS",
+        "$$ = [$1]"
+      ],
+      [
+        "SEQUENCE COMMA SEQUENCE_ITEMS",
+        "$1.push($3); $$ = $1"
+      ]
+    ],
+    "SEQUENCE_ITEMS": [
+      "QUOTE",
+      "STRING",
+      "FUNCTION",
+      "FIELD"
+    ],
+    "FUNCTION": [
+      [
+        "FUNCTION_NAME ( ARGS )",
+        "$$ = {node: $1, args: $ARGS}"
+      ]
+    ],
+    "FUNCTION_NAME": [
+      [
+        "DATE_FUNCTION",
+        "$$ = $DATE_FUNCTION + '-DATE_FUNCTION'"
+      ],
+      [
+        "LOGIC_FUNCTION",
+        "$$ = $LOGIC_FUNCTION + '-LOGIC_FUNCTION'"
+      ],
+      [
+        "MATH_FUNCTION",
+        "$$ = $MATH_FUNCTION + '-MATH_FUNCTION'"
+      ],
+      [
+        "PERIOD_FUNCTION",
+        "$$ = $PERIOD_FUNCTION + '-PERIOD_FUNCTION'"
+      ],
+      [
+        "STRING_FUNCTION",
+        "$$ = $STRING_FUNCTION + '-STRING_FUNCTION'"
+      ]
+    ],
+    "ARGS": [
+      [
+        "SEQUENCE_ITEMS",
+        "$$ = [$1]"
+      ],
+      [
+        "ARGS COMMA SEQUENCE_ITEMS",
+        "$1.push($3); $$ = $1"
+      ]
+    ],
+    "FIELD": [
+      [
+        "[ TEXT ]",
+        "$$ = {node: 'FIELD_NO_ENTITY', field: $2}"
+      ],
+      [
+        "[ TEXT DOT TEXT ]",
+        "$$ = {node: 'FIELD_AND_ENTITY', field: $4, entity: $2}"
+      ],
+      [
+        "[ USERENTITY DOT TEXT ]",
+        "$$ = {node: 'FIELD_AND_USERENTITY', field: $4, userentity: $2}"
+      ]
+    ]
+  }
+}
