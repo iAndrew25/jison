@@ -3,7 +3,7 @@
 %lex
 %%
 
-'+' 								return 'MATHEMATICAL_OPERATOR'
+/*'+' 								return 'MATHEMATICAL_OPERATOR'
 '-' 								return 'MATHEMATICAL_OPERATOR'
 '*' 								return 'MATHEMATICAL_OPERATOR'
 '/' 								return 'MATHEMATICAL_OPERATOR'
@@ -24,9 +24,9 @@
 
 'AND'								return 'LOGICAL_OPERATOR'
 'OR'								return 'LOGICAL_OPERATOR'
-'NOT'								return 'LOGICAL_OPERATOR'
+'NOT'								return 'LOGICAL_OPERATOR'*/
 
-'AddDays' 							return 'DATE_FUNCTION'
+/*'AddDays' 							return 'DATE_FUNCTION'
 'AddMonths' 						return 'DATE_FUNCTION'
 'AddYears' 							return 'DATE_FUNCTION'
 'Date' 								return 'DATE_FUNCTION'
@@ -94,7 +94,7 @@
 
 'Trim' 								return 'STRING_FUNCTION'
 'Upper' 							return 'STRING_FUNCTION'
-'Value' 							return 'STRING_FUNCTION'
+'Value' 							return 'STRING_FUNCTION'*/
 
 'Userentity'						return 'KEYWORD'
 
