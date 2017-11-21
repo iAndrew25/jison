@@ -157,31 +157,12 @@ let functionsMock = [
 		category: 'DATE'
 	}];
 
-const operatorToGrammar = operators => operators.map(({syntax, category}) => [`\\${syntax}`, `return '${category.toUpperCase()}_OPERATOR'`]);
+const operatorsToGrammar = operators => operators.map(({syntax, category}) => [`\\${syntax}`, `return '${category.toUpperCase()}_OPERATOR'`]);
 const functionsToGrammar = fns => fns.map(({name, category}) => [name, `return '${category.toUpperCase()}_FUNCTION'`]);
 
-grammar.lex.rules = [...operatorToGrammar(operatorsMock), ...functionsToGrammar(functionsMock), ...grammar.lex.rules];
+grammar.lex.rules = [...operatorsToGrammar(operatorsMock), ...functionsToGrammar(functionsMock), ...grammar.lex.rules];
 
 console.log(JSON.stringify(grammar.lex.rules));
 const parser = new Parser(grammar);
 
 parser.parse(`FirstDayInPeriod([23-01-07-03-02-06-Employee.23-01-07-03-02-06-Hire Date], 3-5, "sdfh-dsfh") + PeriodYearForDate([23-01-07-03-02-06-Employee.Login ID], [Userentity.AG-N Percent 0 Decimals]) + 3 = PeriodYearForDate([23-01-07-03-02-06-Employee.Login ID])`);
-
-//let result = parse(`FirstDayInPeriod([23-01-07-03-02-06-Employee.23-01-07-03-02-06-Hire Date], 3-5, "sdfh-dsfh") + PeriodYearForDate([23-01-07-03-02-06-Employee.Login ID], [Userentity.AG-N Percent 0 Decimals]) + 3 = PeriodYearForDate([23-01-07-03-02-06-Employee.Login ID])`);
-
-/*function decode(result) {
-	if(result instanceof Array) {
-		if(result.length === 1) {
-			return result[0];
-		} else {
-			return result;
-		}
-	} else if(result instanceof Object) {
-
-	} else {
-
-	}
-}
-
-console.log(decode(result));*/
-
